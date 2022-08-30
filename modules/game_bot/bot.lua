@@ -526,6 +526,14 @@ function initCallbacks()
     onInventoryChange = botInventoryChange,
     onExperienceChange = botExperienceChange,
     onLevelChange = botLevelChange,
+    onSoulChange = botSoulChange,
+    onStaminaChange = botStaminaChange,
+    onMagicLevelChange = botMagicLevelChange,
+    onBaseMagicLevelChange = botBaseMagicLevelChange,
+    onTotalCapacityChange = botTotalCapacityChange,
+    onFreeCapacityChange = botFreeCapacityChange,
+    onSkillChange = botSkillChange,
+    onBaseSkillChange = botBaseSkillChange,
   })
   
   connect(Container, {
@@ -594,6 +602,14 @@ function terminateCallbacks()
     onInventoryChange = botInventoryChange,
     onExperienceChange = botExperienceChange,
     onLevelChange = botLevelChange,
+    onSoulChange = botSoulChange,
+    onStaminaChange = botStaminaChange,
+    onMagicLevelChange = botMagicLevelChange,
+    onBaseMagicLevelChange = botBaseMagicLevelChange,
+    onTotalCapacityChange = botTotalCapacityChange,
+    onFreeCapacityChange = botFreeCapacityChange,
+    onSkillChange = botSkillChange,
+    onBaseSkillChange = botBaseSkillChange,
   })
   
   disconnect(Container, {
@@ -824,4 +840,44 @@ end
 function botLevelChange(player, level, levelPercent, oldLevel, oldLevelPercent)
   if botExecutor == nil then return false end
   safeBotCall(function() botExecutor.callbacks.onLevelChange(level, levelPercent, oldLevel, oldLevelPercent) end)
+end
+
+function botMagicLevelChange(player, magicLevel, magicLevelPercent, oldMagicLevel, oldMagicLevelPercent)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onMagicLevelChange(magicLevel, magicLevelPercent, oldMagicLevel, oldMagicLevelPercent) end)
+end
+
+function botBaseMagicLevelChange(player, baseMagicLevel, oldBaseMagicLevel)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onBaseMagicLevelChange(baseMagicLevel, oldBaseMagicLevel) end)
+end
+
+function botSoulChange(player, soul, oldSoul)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onSoulChange(soul, oldSoul) end)
+end
+
+function botStaminaChange(player, stamina, oldStamina)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onStaminaChange(stamina, oldStamina) end)
+end
+
+function botTotalCapacityChange(player, totalCapacity, oldTotalCapacity)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onTotalCapacityChange(totalCapacity, oldTotalCapacity) end)
+end
+
+function botFreeCapacityChange(player, freeCapacity, oldFreeCapacity)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onFreeCapacityChange(freeCapacity, oldFreeCapacity) end)
+end
+
+function botSkillChange(player, skill, level, levelPercent, oldLevel, oldLevelPercent)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onSkillChange(skill, level, levelPercent, oldLevel, oldLevelPercent) end)
+end
+
+function botBaseSkillChange(player, skill, baseLevel, oldBaseLevel)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onBaseSkillChange(skill, baseLevel, oldBaseLevel) end)
 end

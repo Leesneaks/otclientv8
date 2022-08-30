@@ -249,6 +249,47 @@ end
 context.onLevelChange = function(callback)
   return context.callback("onLevelChange", callback)
 end
+
+-- onMagicLevelChange  -- callback = function(magicLevel, magicLevelPercent, oldMagicLevel, oldMagicLevelPercent)
+context.onMagicLevelChange  = function(callback)
+  return context.callback("onMagicLevelChange", callback)
+end
+
+-- onBaseMagicLevelChange  -- callback = function(baseMagicLevel, oldBaseMagicLevel))
+context.onBaseMagicLevelChange  = function(callback)
+  return context.callback("onBaseMagicLevelChange", callback)
+end
+
+-- onSoulChange -- callback = function(soul, oldSoul)
+context.onSoulChange = function(callback)
+  return context.callback("onSoulChange", callback)
+end
+
+-- onStaminaChange -- callback = function(stamina, oldStamina)
+context.onStaminaChange = function(callback)
+  return context.callback("onStaminaChange", callback)
+end
+
+-- onTotalCapacityChange -- callback = function(totalCapacity, oldTotalCapacity)
+context.onTotalCapacityChange = function(callback)
+  return context.callback("onTotalCapacityChange", callback)
+end
+
+-- onFreeCapacityChange -- callback = function(freeCapacity, oldFreeCapacity)
+context.onFreeCapacityChange = function(callback)
+  return context.callback("onFreeCapacityChange", callback)
+end
+
+-- onSkillChange -- callback = function(skill, level, levelPercent, oldLevel, oldLevelPercent)
+context.onSkillChange = function(callback)
+  return context.callback("onSkillChange", callback)
+end
+
+-- onBaseSkillChange -- callback = function(skill, baseLevel, oldBaseLevel)
+context.onBaseSkillChange = function(callback)
+  return context.callback("onBaseSkillChange", callback)
+end
+
 -- CUSTOM CALLBACKS
 
 -- listen(name, callback) -- callback = function(text, channelId, pos)

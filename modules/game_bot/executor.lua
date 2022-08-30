@@ -78,6 +78,14 @@ function executeBot(config, storage, tabs, msgCallback, saveConfigCallback, relo
     onInventoryChange = {},
     onExperienceChange = {},
     onLevelChange = {},
+    onMagicLevelChange = {},
+    onBaseMagicLevelChange = {},
+    onSoulChange = {},
+    onStaminaChange = {},
+    onTotalCapacityChange = {},
+    onFreeCapacityChange = {},
+    onSkillChange = {}, 
+    onBaseSkillChange = {},
   }
   
   -- basic functions & classes
@@ -440,6 +448,46 @@ function executeBot(config, storage, tabs, msgCallback, saveConfigCallback, relo
       onLevelChange = function(level, levelPercent, oldLevel, oldLevelPercent)
         for i, callback in ipairs(context._callbacks.onLevelChange) do
           callback(level, levelPercent, oldLevel, oldLevelPercent)
+        end
+      end,
+      onMagicLevelChange = function(magicLevel, magicLevelPercent, oldMagicLevel, oldMagicLevelPercent)
+        for i, callback in ipairs(context._callbacks.onMagicLevelChange) do
+          callback(magicLevel, magicLevelPercent, oldMagicLevel, oldMagicLevelPercent)
+        end
+      end,
+      onBaseMagicLevelChange = function(baseMagicLevel, oldBaseMagicLevel)
+        for i, callback in ipairs(context._callbacks.onBaseMagicLevelChange) do
+          callback(baseMagicLevel, oldBaseMagicLevel)
+        end
+      end,
+      onSoulChange = function(soul, oldSoul)
+        for i, callback in ipairs(context._callbacks.onSoulChange) do
+          callback(soul, oldSoul)
+        end
+      end,
+      onStaminaChange = function(stamina, oldStamina)
+        for i, callback in ipairs(context._callbacks.onStaminaChange) do
+          callback(stamina, oldStamina)
+        end
+      end,
+      onTotalCapacityChange = function(totalCapacity, oldTotalCapacity)
+        for i, callback in ipairs(context._callbacks.onTotalCapacityChange) do
+          callback(totalCapacity, oldTotalCapacity)
+        end
+      end,
+      onFreeCapacityChange = function(freeCapacity, oldFreeCapacity)
+        for i, callback in ipairs(context._callbacks.onFreeCapacityChange) do
+          callback(freeCapacity, oldFreeCapacity)
+        end
+      end,
+      onSkillChange = function(skill, level, levelPercent, oldLevel, oldLevelPercent)
+        for i, callback in ipairs(context._callbacks.onSkillChange) do
+          callback(skill, level, levelPercent, oldLevel, oldLevelPercent)
+        end
+      end,
+      onBaseSkillChange = function(skill, baseLevel, oldBaseLevel)
+        for i, callback in ipairs(context._callbacks.onBaseSkillChange) do
+          callback(skill, baseLevel, oldBaseLevel)
         end
       end,
     }    
