@@ -60,6 +60,16 @@ context.onKeyUp = function(callback)
   return context.callback("onKeyUp", callback)
 end
 
+-- onMouseRelease(callback) -- callback = function(pos, button)
+context.onMouseRelease = function(callback)
+  return context.callback("onMouseRelease", callback)
+end
+
+-- onMousePress(callback) -- callback = function(pos, button)
+context.onMousePress = function(callback)
+  return context.callback("onMousePress", callback)
+end
+
 -- onTalk(callback) -- callback = function(name, level, mode, text, channelId, pos)
 context.onTalk = function(callback) 
   return context.callback("onTalk", callback)

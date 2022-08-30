@@ -477,7 +477,9 @@ function initCallbacks()
   connect(rootWidget, {
     onKeyDown = botKeyDown,
     onKeyUp = botKeyUp,
-    onKeyPress = botKeyPress 
+    onKeyPress = botKeyPress,
+    onMouseRelease = botMouseRelease,
+    onMousePress = botMousePress,
   })
 
   connect(g_game, { 
@@ -543,7 +545,9 @@ function terminateCallbacks()
   disconnect(rootWidget, {
     onKeyDown = botKeyDown,
     onKeyUp = botKeyUp,
-    onKeyPress = botKeyPress 
+    onKeyPress = botKeyPress,
+    onMouseRelease = botMouseRelease,
+    onMousePress = botMousePress,
   })
                         
   disconnect(g_game, { 
@@ -626,6 +630,16 @@ function botKeyPress(widget, keyCode, keyboardModifiers, autoRepeatTicks)
   if botExecutor == nil then return false end
   if keyCode == KeyUnknown then return end
   safeBotCall(function() botExecutor.callbacks.onKeyPress(keyCode, keyboardModifiers, autoRepeatTicks) end)
+end
+
+function botMouseRelease(widget, pos, button)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onMouseRelease(pos, button) end)
+end
+
+function botMousePress(widget, pos, button)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onMousePress(pos, button) end)
 end
 
 function botOnTalk(name, level, mode, text, channelId, pos)

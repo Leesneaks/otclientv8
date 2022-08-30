@@ -40,6 +40,8 @@ function executeBot(config, storage, tabs, msgCallback, saveConfigCallback, relo
     onKeyDown = {},
     onKeyUp = {},
     onKeyPress = {},
+    onMouseRelease = {},
+    onMousePress = {},
     onTalk = {},
     onTextMessage = {},
     onLoginAdvice = {},
@@ -241,6 +243,16 @@ function executeBot(config, storage, tabs, msgCallback, saveConfigCallback, relo
         end
         for i, callback in ipairs(context._callbacks.onKeyPress) do
           callback(keyDesc, autoRepeatTicks)
+        end
+      end,
+      onMouseRelease = function(mousePos, mouseButton)
+        for i, callback in ipairs(context._callbacks.onMouseRelease) do
+          callback(mousePos, mouseButton)
+        end
+      end,
+      onMousePress = function(mousePos, mouseButton)
+        for i, callback in ipairs(context._callbacks.onMousePress) do
+          callback(mousePos, mouseButton)
         end
       end,
       onTalk = function(name, level, mode, text, channelId, pos)
