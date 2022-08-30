@@ -240,6 +240,15 @@ context.onInventoryChange = function(callback)
   return context.callback("onInventoryChange", callback)
 end
 
+-- onExperienceChange -- callback = function(experience, oldExperience)
+context.onExperienceChange = function(callback)
+  return context.callback("onExperienceChange", callback)
+end
+
+-- onLevelChange -- callback = function(level, levelPercent, oldLevel, oldLevelPercent)
+context.onLevelChange = function(callback)
+  return context.callback("onLevelChange", callback)
+end
 -- CUSTOM CALLBACKS
 
 -- listen(name, callback) -- callback = function(text, channelId, pos)

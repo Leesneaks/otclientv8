@@ -75,7 +75,9 @@ function executeBot(config, storage, tabs, msgCallback, saveConfigCallback, relo
     onGroupSpellCooldown = {},
     onSpellCooldown = {},
     onRemoveItem = {},
-    onInventoryChange = {}
+    onInventoryChange = {},
+    onExperienceChange = {},
+    onLevelChange = {},
   }
   
   -- basic functions & classes
@@ -429,7 +431,17 @@ function executeBot(config, storage, tabs, msgCallback, saveConfigCallback, relo
         for i, callback in ipairs(context._callbacks.onInventoryChange) do
           callback(player, slot, item, oldItem)
         end
-      end
+      end,
+      onExperienceChange = function(experience, oldExperience)
+        for i, callback in ipairs(context._callbacks.onExperienceChange) do
+          callback(experience, oldExperience)
+        end
+      end,
+      onLevelChange = function(level, levelPercent, oldLevel, oldLevelPercent)
+        for i, callback in ipairs(context._callbacks.onLevelChange) do
+          callback(level, levelPercent, oldLevel, oldLevelPercent)
+        end
+      end,
     }    
   }
 end

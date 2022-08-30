@@ -523,7 +523,9 @@ function initCallbacks()
     onWalk = botCreatureWalk,
     onManaChange = botManaChange,
     onStatesChange = botStatesChange,
-    onInventoryChange = botInventoryChange
+    onInventoryChange = botInventoryChange,
+    onExperienceChange = botExperienceChange,
+    onLevelChange = botLevelChange,
   })
   
   connect(Container, {
@@ -589,7 +591,9 @@ function terminateCallbacks()
     onWalk = botCreatureWalk,
     onManaChange = botManaChange,
     onStatesChange = botStatesChange,
-    onInventoryChange = botInventoryChange
+    onInventoryChange = botInventoryChange,
+    onExperienceChange = botExperienceChange,
+    onLevelChange = botLevelChange,
   })
   
   disconnect(Container, {
@@ -810,4 +814,14 @@ end
 function botInventoryChange(player, slot, item, oldItem)
   if botExecutor == nil then return false end
   safeBotCall(function() botExecutor.callbacks.onInventoryChange(player, slot, item, oldItem) end)
+end
+
+function botExperienceChange(player, experience, oldExperience)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onExperienceChange(experience, oldExperience) end)
+end
+
+function botLevelChange(player, level, levelPercent, oldLevel, oldLevelPercent)
+  if botExecutor == nil then return false end
+  safeBotCall(function() botExecutor.callbacks.onLevelChange(level, levelPercent, oldLevel, oldLevelPercent) end)
 end
