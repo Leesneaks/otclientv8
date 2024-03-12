@@ -89,7 +89,7 @@ function clear()
   botMessages:updateLayout()
   
   for i, socket in pairs(botWebSockets) do
-    g_http.cancel(socket)
+    HTTP.cancel(i)
     botWebSockets[i] = nil
   end
 
