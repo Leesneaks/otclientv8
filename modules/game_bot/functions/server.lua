@@ -34,11 +34,6 @@ context.BotServer.init = function(name, channel)
     return context.error("BotServer is already initialized")
   end
   context.BotServer._websocket = HTTP.WebSocketJSON(context.BotServer.url, {
-    onOpen = function()
-      context.BotServer._wasConnected = true
-      context.BotServer.reconnectAttempts = 0
-      context.warn("BotServer connected.")
-    end,
     onMessage = function(message, socketId)
       if not context._websockets[socketId] then
         return g_http.cancel(socketId)
