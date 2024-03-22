@@ -10,13 +10,14 @@ context.BotServer._wasConnected = true -- show first warning
 
 context.BotServer.stopReconnect = false
 context.BotServer.reconnectAttempts = 0
-context.BotServer.maxReconnectAttempts = 5
+context.BotServer.maxReconnectAttempts = 10
 context.BotServer.reconnectDelay = 2000
 
 local function tryReconnect(name, channel)
   if not context.BotServer.stopReconnect and context.BotServer.reconnectAttempts < context.BotServer.maxReconnectAttempts then
     context.BotServer.reconnectAttempts = context.BotServer.reconnectAttempts + 1
-    local delay = context.BotServer.reconnectDelay * (2 ^ (context.BotServer.reconnectAttempts - 1))
+    local cappedAttempts = math.min(context.BotServer.reconnectAttempts, 5)
+    local delay = context.BotServer.reconnectDelay * (2 ^ (cappedAttempts  - 1))
     scheduleEvent(function()
       context.BotServer.init(name, channel)
     end, delay)
@@ -34,6 +35,11 @@ context.BotServer.init = function(name, channel)
     return context.error("BotServer is already initialized")
   end
   context.BotServer._websocket = HTTP.WebSocketJSON(context.BotServer.url, {
+    onError = function(message, websocketId)
+      if message and message:find("resolve error") then
+        context.BotServer.stopReconnect = true
+      end
+    end,
     onMessage = function(message, socketId)
       if not context._websockets[socketId] then
         return g_http.cancel(socketId)
@@ -79,7 +85,7 @@ context.BotServer.init = function(name, channel)
       context.BotServer._websocket = nil
       context.BotServer.ping = 0
       tryReconnect(name, channel)
-    end    
+    end
   }, context.BotServer.timeout)
   context._websockets[context.BotServer._websocket.id] = 1
   context.BotServer._websocket.send({type="init", name=name, channel=channel, lastMessage=context.BotServer._lastMessageId})
