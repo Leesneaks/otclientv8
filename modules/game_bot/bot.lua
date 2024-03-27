@@ -497,7 +497,7 @@ function initCallbacks()
     onAttackingCreatureChange = botAttackingCreatureChange,
     onAddItem = botContainerAddItem,
     onRemoveItem = botContainerRemoveItem,
-    onGameEditText = botGameEditText,
+    onEditText = botGameEditText,
     onSpellCooldown = botSpellCooldown,
     onSpellGroupCooldown = botGroupSpellCooldown
   })
@@ -573,7 +573,7 @@ function terminateCallbacks()
     onImbuementWindow = botImbuementWindow,
     onModalDialog = botModalDialog,
     onAttackingCreatureChange = botAttackingCreatureChange,
-    onGameEditText = botGameEditText,
+    onEditText = botGameEditText,
     onSpellCooldown = botSpellCooldown,
     onSpellGroupCooldown = botGroupSpellCooldown
   })
