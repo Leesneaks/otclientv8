@@ -86,6 +86,7 @@ function terminate()
     onSpellGroupCooldown = onSpellGroupCooldown,
     onSpellCooldown = onSpellCooldown
   })
+  mouseGrabberWidget:destroy()
 end
 
 function createActionBars()
@@ -128,7 +129,6 @@ function offline()
 
   -- destroy windows
   destroyAssignWindows()
-  mouseGrabberWidget:destroy()
 
   -- remove binds
   for index, actionbar in ipairs(actionBars) do
